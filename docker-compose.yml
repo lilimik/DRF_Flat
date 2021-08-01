@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres:11.1-alpine
+    volumes:
+      - db-drf-flat:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=drf_flat
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=flat
+    ports:
+      - 5432:5432
+
+volumes:
+  db-drf-flat:
