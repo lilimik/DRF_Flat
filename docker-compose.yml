@@ -1,16 +1,30 @@
-version: '3.9'
+version: "3.3"
 
 services:
+  app:
+    image: drf-flat
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+    environment:
+      DB_NAME: drf_flat
+      DB_USER: flat
+      DB_PASSWORD: flatpassword
+      DB_HOST: database
+
   database:
-    image: postgres:11.1-alpine
+    image: postgres:13.3
     volumes:
       - db-drf-flat:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=drf_flat
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=flat
-    ports:
-      - 5432:5432
+      POSTGRES_USER: flat
+      POSTGRES_PASSWORD: flatpassword
+      POSTGRES_DB: drf_flat
 
 volumes:
   db-drf-flat:

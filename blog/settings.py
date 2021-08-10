@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-tk-tywot7ri759*n7umvv^t&^fiy9*-d+21gd_vx4h0qwy9!)+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -79,10 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('DB_NAME', default='drf_flat'),
-        'USER': os.environ.get('DB_USER', default='postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', default='flat'),
+        'USER': os.environ.get('DB_USER', default='flat'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', default='flatpassword'),
         'HOST': os.environ.get('DB_HOST', default='localhost'),
-        'PORT': os.environ.get('DB_PORT', default=5432),
+        'PORT': os.environ.get('DB_PORT', default='5432'),
     }
 }
 
@@ -121,6 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
